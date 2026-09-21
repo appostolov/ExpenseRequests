@@ -3,3 +3,9 @@ What should the user be able to do?
 - submit request
 - edit
 - decide ( Approve or Reject )
+
+What programming stack to use?
+- TypeScript is prefered
+- The goal is to show my capabilities
+
+I will stick to pure JavaScript, cause switching to TypeScript will increase the efforts and switch the focus from the main goal
