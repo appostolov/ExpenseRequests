@@ -45,5 +45,16 @@ module.exports = {
         .catch(function( err ){
             next( err );
         });
+    },
+
+    submit: function( req, res, next ){
+        controller.submit( req, res )
+        .then(function( request ){
+            utilData.set( res, "success/body/request", request );
+            next();
+        })
+        .catch(function( err ){
+            next( err );
+        });
     }
 };

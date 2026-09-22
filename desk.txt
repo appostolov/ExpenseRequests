@@ -16,3 +16,4 @@ What should be the first endpoint?
 - POST expense/filter next for showing details and future search
 - POST expense/insert
 - POST expense/update - I make sure the actor is the creator, validate the values, update the status to open and add event
+- POST expense/submit - Needs to validate the values and calculate approver

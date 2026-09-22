@@ -1,5 +1,6 @@
 var data = require( "../data/export" );
 var schema = require( "../middlewares/schema" );
+var dataUtils = require( "../utils/data" );
 
 module.exports = {
 
@@ -56,24 +57,12 @@ module.exports = {
             });
 
             // Generate new entry
-            var id = "REQ-" + Object.keys( data.requests ).length; // Buggy
-            var user = request.get( "x-user-id" );
-            var newRequest = {
-                id: id,
-                requesterId: user,
-                values: parsed.data,
-                status: "open",
-                events: [{
-                    type: "created",
-                    at: new Date().toISOString(),
-                    actorId: user
-                }]
-            };
+            var newRequest = this.newExpenseRequest( parsed.data );
             // Save
             data.requests[ id ] = newRequest;
             // Response
             res( newRequest );
-        });
+        }.bind( this ));
     },
 
     update: function( request ){
@@ -122,5 +111,98 @@ module.exports = {
             // Response
             res( item );
         });
+    },
+
+    submit: function( request ){
+
+        return new Promise( function( res, rej ){
+
+            // Check input's validity
+            var zod = schema.submit();
+            var parsed = zod.safeParse( request.body.values );
+            if( !parsed.success ) return rej({
+                code: 400,
+                body: parsed.error
+            });
+
+            var item;
+            if( request.body.id ) item = data.requests[ request.body.id ];
+            else item = this.newExpenseRequest( parsed.data );
+            
+            if( !item ) return rej({
+                code: 404,
+                body: {
+                    message: "Item not found"
+                }
+            });
+
+            var user = request.get( "x-user-id" );
+            if( item.requesterId !== user ) return rej({
+                code: 403,
+                body: {
+                    message: "Unauthorized access"
+                }
+            });
+            
+            if( item.status === "approved" ) return rej({
+                code: 400,
+                body: {
+                    message: "Request is approved"
+                }
+            });
+
+            if( item.status === "rejected" && dataUtils.equal( request.body.values, item.values ) ) return rej({
+                code: 400,
+                body: {
+                    message: "Update before re-submit rejected requests"
+                }
+            });
+
+            var approver = this.findApproved( item );
+            if( !approver ) return rej({
+                code: 400,
+                body: {
+                    message: "Back off finance guy"
+                }
+            });
+
+            // Update the request
+            item.values = request.body.values;
+            item.status = "submitted";
+            item.approverId = approver.id;
+            item.events.push({
+                type: "submitted",
+                at: new Date().toISOString(),
+                actorId: user,
+                approverId: approver.id
+            });
+            // Response
+            res( item );
+        }.bind( this ));
+    },
+
+    newExpenseRequest: function( values ){
+        var id = "REQ-" + Object.keys( data.requests ).length; // Buggy
+        var user = request.get( "x-user-id" );
+        return {
+            id: id,
+            requesterId: user,
+            values: values,
+            status: "open",
+            events: [{
+                type: "created",
+                at: new Date().toISOString(),
+                actorId: user
+            }]
+        };
+    },
+
+    findApproved: function( request ){
+        var finance = data.users[ "u_trent" ];
+        var requester = data.users[ request.requesterId ];
+        var approver = data.users[ requester.managerId ];
+        if( request.values.amountCents >= 100000 || !approver ) approver = finance;
+        
+        if( approver !== requester && approver !== finance ) return approver;
     }
 };

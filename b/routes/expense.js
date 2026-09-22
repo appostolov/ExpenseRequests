@@ -22,4 +22,9 @@ router.post(
     middleware.update
 );
 
+router.post(
+    '/submit',
+    middleware.submit
+);
+
 module.exports = router;

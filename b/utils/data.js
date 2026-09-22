@@ -132,5 +132,29 @@ module.exports = {
 
             else if( this.isObjectOrArray( source[ key ] ) ) this.copyFunctions( target[ key ], source[ key ] );
         }
+    },
+
+    equal: function( source, target ){
+        if( typeof source !== typeof target ) return false;
+        else if( source === target ) return true;
+        else if( Array.isArray( source ) && Array.isArray( target ) ){
+            if( source.length !== target.length ) return false;
+            for( var a = 0; a < source.length; a++ ){
+                if( !this.equal( source[ a ], target[ a ] ) ) return false;
+            }
+            return true;
+        }
+        else if( this.isObject( source ) && this.isObject( target ) ){
+            var sourceKeys = Object.keys( source );
+            var targetKeys = Object.keys( target );
+
+            if( sourceKeys.length !== targetKeys.length ) return false;
+
+            for( var a = 0; a < sourceKeys.length; a++ ){
+                if( targetKeys.indexOf( sourceKeys[ a ] ) === -1 ) return false;
+                if( !this.equal( source[ sourceKeys[ a ] ], target[ sourceKeys[ a ] ] ) ) return false;
+            }
+            return true;
+        }
     }
 };
