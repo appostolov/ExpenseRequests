@@ -24,7 +24,6 @@ module.exports = {
 
         controller.select( req, res )
         .then(function( users ){
-            console.log(users);
             utilData.set( res, "success/body/users", users );
             next();
         })

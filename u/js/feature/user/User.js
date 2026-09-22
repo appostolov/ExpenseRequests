@@ -8,7 +8,7 @@ define([
     DataManager
 ){
     return {
-        key: "comment",
+        key: "user",
         type: WIDGET.TYPE.BLOCK,
         className: "flexNone",
         afterInit: function(){
@@ -30,8 +30,8 @@ define([
                     this.node.style.background = this.generateColor( data.name, false );
                 },
                 afterInit: function(){
-                    var comment = this.getParentBy({ key: "comment" });
-                    this.modelSubscribe( comment.model, this.onModelChange.bind( this ) );
+                    var user = this.getParentBy({ key: "user" });
+                    this.modelSubscribe( user.model, this.onModelChange.bind( this ) );
                 },
                 generateColor: function( str, strong ){
                     // GENERATED THIS METHOD WITH AI
@@ -82,8 +82,8 @@ define([
                     this.node.innerHTML = data.name;
                 },
                 afterInit: function(){
-                    var comment = this.getParentBy({ key: "comment" });
-                    this.modelSubscribe( comment.model, this.onModelChange.bind( this ) );
+                    var user = this.getParentBy({ key: "user" });
+                    this.modelSubscribe( user.model, this.onModelChange.bind( this ) );
                 }
             }
         ]

@@ -6,7 +6,8 @@ define([
     var URLManager = {
         last: null,
         routes: [
-            ""
+            "",
+            "users"
         ],
         get route(){
             return this.parse( window.location.hash ) || {};

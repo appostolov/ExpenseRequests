@@ -14,6 +14,9 @@ define([], function(){
         },
         POPOVER: {
             CLOSE: "popover_close"
+        },
+        USER: {
+            PICKED: "user_picked"
         }
     };
 });

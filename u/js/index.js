@@ -10,8 +10,8 @@ requirejs(
         "const/color",
         "const/device",
         "const/event",
-        "feature/user/User",
-        "util/Model"
+        "util/Model",
+        "feature/Router"
     ],
     function(
         WidgetManager,
@@ -20,8 +20,8 @@ requirejs(
         COLOR,
         DEVICE,
         EVENT,
-        User,
-        Model
+        Model,
+        Router
     ){
         WidgetManager.create({
             key: "root",
@@ -35,17 +35,7 @@ requirejs(
                 ColorManager.deploy( COLOR );
             },
             children: [
-                Object.assign(
-                    {},
-                    User,
-                    {
-                        beforeInit: function(){
-                            this.model = new Model({
-                                name: "Alice"
-                            });
-                        }
-                    }
-                )
+                Router
             ]
         });
     });

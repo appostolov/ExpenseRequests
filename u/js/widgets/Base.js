@@ -559,6 +559,8 @@ define([
 
 	Base.prototype.request = function( data ){
 
+		var self = this;
+
 		if( DataManager.isFunction( data.start ) ) data.start.call( self, data );
 		HTTPManager.request( data )
 		.then(function( request ){

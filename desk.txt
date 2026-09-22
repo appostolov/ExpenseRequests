@@ -25,3 +25,6 @@ Time to start with the Front End!
 
 Lets create the building blocks (components) first and then organize them in views.
 - User entries are a good start. I imagine a colored circle with the first letter and the name next to it. They will be used in the request entries for requester and approver. They will also appear in the details and the history.
+
+I can create other components like status mark, request entries and events, but lets switch to some FE routing and implement the user picker for the start, the route to requests list on user selection.
+- in the user picker I will use two important channels for spreading data - central state and custom events. The users loaded from BE are cached in the cantral state, while user pick will fire event so any component(widget) in the UI can subscribe and act on such change, while have the central state available.
