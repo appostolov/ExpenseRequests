@@ -1,0 +1,14 @@
+.widgetButton{
+    flex: none;
+    height: min-content;
+    padding: 1em;
+    border-style: solid;
+    border-radius: 0.5em;
+    border-width: 0.1em;
+    cursor: pointer;
+    font-size: 1em;
+}
+
+.widgetButton:active{
+    opacity: 0.5;
+}

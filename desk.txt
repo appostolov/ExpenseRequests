@@ -18,3 +18,6 @@ What should be the first endpoint?
 - POST expense/update - I make sure the actor is the creator, validate the values, update the status to open and add event
 - POST expense/submit - Needs to validate the values and calculate approver
 - POST expense/approve - have to validate the approver is the actor, have to add event and change the status
+
+Time to start with the Front End!
+- As a first step I will import light version of Decodela's FE framework. Even implemented in the past all of it is my creation.

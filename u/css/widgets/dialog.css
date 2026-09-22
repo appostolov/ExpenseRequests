@@ -1,0 +1,7 @@
+.widgetDialog{
+    z-index: 1000;
+}
+
+.widgetDialog > *{
+    flex: none;
+}

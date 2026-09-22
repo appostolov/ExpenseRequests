@@ -1,0 +1,714 @@
+*:not(.default, .default *, head, title, style, script), .flex, .flex *{
+    box-sizing: border-box;
+    display: flex;
+    flex: 1;
+    min-width: 0;
+    margin: 0;
+    padding: 0;
+    border-width: 0;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    min-height: 0;/* Firefox: Flex items establish a default minimum size that's based on their children's intrinsic size */
+    
+    -moz-user-select: -moz-none;
+   -khtml-user-select: none;
+   -webkit-user-select: none;
+}
+
+head, title, style, script{
+    display: none;
+}
+
+body{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    touch-action: none;
+    font-family: "Roboto", sans-serif;
+}
+
+.fa-solid{
+    font-weight: inherit !important;
+    font-family: inherit !important;
+}
+
+.fa-solid::before{
+    font-weight: 900;
+    font-family: "Font Awesome 6 Free";
+}
+
+.bold{
+    font-weight: bold !important;
+}
+
+.fa-solid.bold{
+    font-weight: bold !important;
+}
+
+.column{
+    flex-direction: column;
+}
+
+.columnReverse{
+   flex-direction: column-reverse;
+}
+
+.rowReverse{
+   flex-direction: row-reverse;
+}
+
+.centered{
+    justify-content: center;
+    align-items: center;
+}
+
+.justifyContentCenter{
+    justify-content: center;
+}
+
+.justifyContentStart{
+    justify-content: flex-start;
+}
+
+.justifyContentEnd{
+    justify-content: flex-end;
+}
+
+.justifyContentSpaceBetween{
+    justify-content: space-between;
+}
+
+.justifyContentSpaceAround{
+    justify-content: space-around;
+}
+
+.justifyContentSpaceEvenly{
+    justify-content: space-evenly;
+}
+
+.alignItemsCenter{
+    align-items: center;
+}
+
+.alignItemsStart{
+    align-items: flex-start;
+}
+
+.alignItemsEnd{
+    align-items: flex-end;
+}
+
+.alignItemsStrech{
+    align-items: stretch;
+}
+
+.flexWrap{
+    flex-wrap: wrap !important;
+}
+
+.relativeFull{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.absoluteFull{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.absoluteTopLeft{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.absoluteTopRight{
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.absoluteBottomLeft{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.absoluteBottomRight{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.widthAuto{
+    width: auto;
+}
+
+.article{
+    justify-content: normal;
+    padding: 10px;
+}
+
+.cursorPointer{
+    cursor: pointer;
+}
+
+.flexNone{
+    flex: none;
+}
+
+.flex1{
+    flex: 1 !important;
+}
+
+.textEllipsis{
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+    vertical-align: bottom;
+}
+
+.permissionHide{
+    display: none !important;
+}
+
+.permissionDisabled{
+    cursor: not-allowed !important;
+    opacity: 0.5 !important;
+}
+
+.disabled, .disabled *{
+    cursor: not-allowed !important;
+    opacity: 0.5 !important;
+}
+
+.overflowAuto{
+    overflow: auto !important;
+}
+
+.overflowHidden{
+    overflow: hidden !important;
+}
+
+.textSelect{
+  -moz-user-select: -moz-text;
+  -html-user-select: text;
+  -webkit-user-select: text;
+}
+
+.square{
+    aspect-ratio: 1 !important;
+}
+
+.ellipse{
+    border-radius: 50% !important;
+}
+
+.circle{
+    aspect-ratio: 1 !important;
+    border-radius: 50% !important;
+}
+
+.marginNone{
+    margin: 0 !important;
+}
+
+.marginTopNone{
+    margin-top: 0 !important;
+}
+
+.marginRightNone{
+    margin-right: 0 !important;
+}
+
+.marginBottomNone{
+    margin-bottom: 0 !important;
+}
+
+.marginLeftNone{
+    margin-left: 0 !important;
+}
+
+.marginTiny{
+    margin: 0.2rem !important;
+}
+
+.marginTopTiny{
+    margin-top: 0.2rem !important;
+}
+
+.marginRightTiny{
+    margin-right: 0.2rem !important;
+}
+
+.marginBottomTiny{
+    margin-bottom: 0.2rem !important;
+}
+
+.marginLeftTiny{
+    margin-left: 0.2rem !important;
+}
+
+.marginSmall{
+    margin: 0.5rem !important;
+}
+
+.marginTopSmall{
+    margin-top: 0.5rem !important;
+}
+
+.marginRightSmall{
+    margin-right: 0.5rem !important;
+}
+
+.marginBottomSmall{
+    margin-bottom: 0.5rem !important;
+}
+
+.marginLeftSmall{
+    margin-left: 0.5rem !important;
+}
+
+.marginMedium{
+    margin: 1rem !important;
+}
+
+.marginTopMedium{
+    margin-top: 1rem !important;
+}
+
+.marginRightMedium{
+    margin-right: 1rem !important;
+}
+
+.marginBottomMedium{
+    margin-bottom: 1rem !important;
+}
+
+.marginLeftMedium{
+    margin-left: 1rem !important;
+}
+
+.marginLarge{
+    margin: 2rem !important;
+}
+
+.marginTopLarge{
+    margin-top: 2rem !important;
+}
+
+.marginRightLarge{
+    margin-right: 2rem !important;
+}
+
+.marginBottomLarge{
+    margin-bottom: 2rem !important;
+}
+
+.marginLeftLarge{
+    margin-left: 2rem !important;
+}
+
+.paddingNone{
+    padding: 0 !important;
+}
+
+.paddingTopNone{
+    padding-top: 0 !important;
+}
+
+.paddingRightNone{
+    padding-right: 0 !important;
+}
+
+.paddingBottomNone{
+    padding-bottom: 0 !important;
+}
+
+.paddingLeftNone{
+    padding-left: 0 !important;
+}
+
+.paddingTiny{
+    padding: 0.2rem !important;
+}
+
+.paddingTopTiny{
+    padding-top: 0.2rem !important;
+}
+
+.paddingRightTiny{
+    padding-right: 0.2rem !important;
+}
+
+.paddingBottomTiny{
+    padding-bottom: 0.2rem !important;
+}
+
+.paddingLeftTiny{
+    padding-left: 0.2rem !important;
+}
+
+.paddingSmall{
+    padding: 0.5rem !important;
+}
+
+.paddingMedium{
+    padding: 1rem !important;
+}
+
+.paddingLarge{
+    padding: 2rem !important;
+}
+
+.paddingTopSmall{
+    padding-top: 0.5rem !important;
+}
+
+.paddingRightSmall{
+    padding-right: 0.5rem !important;
+}
+
+.paddingBottomSmall{
+    padding-bottom: 0.5rem !important;
+}
+
+.paddingLeftSmall{
+    padding-left: 0.5rem !important;
+}
+
+.paddingTopMedium{
+    padding-top: 1rem !important;
+}
+
+.paddingRightMedium{
+    padding-right: 1rem !important;
+}
+
+.paddingBottomMedium{
+    padding-bottom: 1rem !important;
+}
+
+.paddingLeftMedium{
+    padding-left: 1rem !important;
+}
+
+.paddingTopLarge{
+    padding-top: 2rem !important;
+}
+
+.paddingRightLarge{
+    padding-right: 2rem !important;
+}
+
+.paddingBottomLarge{
+    padding-bottom: 2rem !important;
+}
+
+.paddingLeftLarge{
+    padding-left: 2rem !important;
+}
+
+.borderNone{
+    border: none !important;
+}
+
+.borderSolid{
+    border-style: solid !important;
+}
+
+.borderTiny{
+    border-width: 0.05rem !important;
+}
+
+.borderSmall{
+    border-width: 0.1rem !important;
+}
+
+.borderMedium{
+    border-width: 0.2rem !important;
+}
+
+.borderLarge{
+    border-width: 0.3rem !important;
+}
+
+.borderTopTiny{
+    border-top-width: 0.05rem !important;
+}
+
+.borderRightTiny{
+    border-right-width: 0.05rem !important;
+}
+
+.borderBottomTiny{
+    border-bottom-width: 0.05rem !important;
+}
+
+.borderLeftTiny{
+    border-left-width: 0.05rem !important;
+}
+
+.borderTopSmall{
+    border-top-width: 0.1rem !important;
+}
+
+.borderRightSmall{
+    border-right-width: 0.1rem !important;
+}
+
+.borderBottomSmall{
+    border-bottom-width: 0.1rem !important;
+}
+
+.borderLeftSmall{
+    border-left-width: 0.1rem !important;
+}
+
+.borderTopMedium{
+    border-top-width: 0.2rem !important;
+}
+
+.borderRightMedium{
+    border-right-width: 0.2rem !important;
+}
+
+.borderBottomMedium{
+    border-bottom-width: 0.2rem !important;
+}
+
+.borderLeftMedium{
+    border-left-width: 0.2rem !important;
+}
+
+.borderTopLarge{
+    border-top-width: 0.3rem !important;
+}
+
+.borderRightLarge{
+    border-right-width: 0.3rem !important;
+}
+
+.borderBottomLarge{
+    border-bottom-width: 0.3rem !important;
+}
+
+.borderLeftLarge{
+    border-left-width: 0.3rem !important;
+}
+
+.alignSelfFlexStart{
+    align-self: flex-start !important;
+}
+
+.displayBlock{
+    display: block !important;
+}
+
+.displayFlex{
+    display: flex !important;
+}
+
+.displayInline{
+    display: inline !important;
+}
+
+.displayInlineFlex{
+    display: inline-flex !important;
+}
+
+.displayInlineBlock{
+    display: inline-block !important;
+}
+
+.displayNone{
+    display: none !important;
+}
+
+.positionRelative{
+    position: relative !important;
+}
+
+.positionAbsolute{
+    position: absolute !important;
+}
+
+.borderRadiusTiny{
+    border-radius: 0.2rem !important;
+}
+
+.borderRadiusSmall{
+    border-radius: 0.5rem !important;
+}
+
+.borderRadiusMedium{
+    border-radius: 1rem !important;
+}
+
+.borderRadiusLarge{
+    border-radius: 2rem !important;
+}
+
+.zIndexAuto{
+    z-index: auto !important;
+}
+
+.zIndex-1{
+    z-index: -1 !important;
+}
+
+.zIndex0{
+    z-index: 0 !important;
+}
+
+.zIndex1{
+    z-index: 1 !important;
+}
+
+.zIndex2{
+    z-index: 2 !important;
+}
+
+.point{
+    flex: none;
+    max-width: 0;
+    max-height: 0;
+    overflow: visible;
+}
+
+.fontSizeTiny{
+    font-size: 0.5rem !important;
+}
+
+.fontSizeSmall{
+    font-size: 0.8rem !important;
+}
+
+.fontSizeNormal{
+    font-size: 1rem !important;
+}
+
+.fontSizeMedium{
+    font-size: 1.2rem !important;
+}
+
+.fontSizeLarge{
+    font-size: 1.5rem !important;
+}
+
+.fontSizeHuge{
+    font-size: 2rem !important;
+}
+
+.landscapeRatio{
+    aspect-ratio: 1.7778;
+}
+
+.portraitRatio{
+    aspect-ratio: 0.5625;
+}
+
+.tiny{
+    height: 0.5rem;
+}
+
+.small{
+    height: 1.5rem;
+}
+
+.medium{
+    height: 3rem;
+}
+
+.large{
+    height: 7rem;
+}
+
+.huge{
+    height: 15rem;
+}
+
+.transparent{
+    opacity: 0 !important;
+}
+
+.heightNone{
+    height: 0;
+    max-height: 0;
+}
+
+.fieldSizingContent{
+    field-sizing: content !important;
+    max-height: 10em;
+}
+
+.textOverflowEllipsis{
+    text-overflow: ellipsis !important;
+    overflow: hidden !important;
+    white-space: nowrap !important;
+}
+
+.heightAuto{
+    height: auto !important;
+}
+
+.normal{
+    font-style: normal !important;
+}
+
+.italic{
+    font-style: italic !important;
+}
+
+.oblique{
+    font-style: oblique !important;
+}
+
+.contentCenter{
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.input{
+    max-width: 100%;
+    padding: 0.3rem;
+
+    border-style: solid;
+    border-width: 0.1rem;
+    border-radius: 0.3rem;
+    line-height: 1.5rem;
+}
+
+.input[type=color]{
+    padding: 0;
+    border: none;
+}
+
+.textAlignRight{
+    text-align: right !important;
+}
+
+.textAlignCenter{
+    text-align: center !important;
+}
+
+.width100{
+    width: 100%;
+}
+
+.maxWidth960{
+    max-width: 960px;
+}
