@@ -7,5 +7,5 @@ module.exports = {
     ),
     users: Object.fromEntries(
         users.map(user => [user.id, user])
-    ),
+    )
 };
