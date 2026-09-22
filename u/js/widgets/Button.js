@@ -11,7 +11,7 @@ define(
         function Button(){
             
             this.template = "<button></button>";
-            this.widgetCss = "/u/css/widgets/button.css";
+            this.widgetCss = "/css/widgets/button.css";
             this.widgetClassName = "widgetButton";
     
             return this;

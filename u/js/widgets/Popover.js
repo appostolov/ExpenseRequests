@@ -17,7 +17,7 @@ define(
         function Popover(){
             
             this.template = "<div></div>";
-            this.widgetCss = "/u/css/widgets/popover.css";
+            this.widgetCss = "/css/widgets/popover.css";
             this.widgetClassName = "widgetPopover";
             this.container = document.body;
     
