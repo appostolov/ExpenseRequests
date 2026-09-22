@@ -1,4 +1,5 @@
 var data = require( "../data/export" );
+var schema = require( "../middlewares/schema" );
 
 module.exports = {
 
@@ -7,6 +8,38 @@ module.exports = {
         return new Promise( function( res, rej ){
 
             res( data.requests );
+        });
+    },
+
+    filter: function( request ){
+
+        return new Promise( function( res, rej ){
+
+            // Check input's validity
+            var zod = schema.filter();
+            var parsed = zod.safeParse( request.body );
+            if( !parsed.success ) return rej({
+                code: 400,
+                body: {
+                    message: "Invalid filters"
+                }
+            });
+
+            // Filter expense requests
+            var input = parsed.data;
+            var keys = Object.keys( input );
+            var requests = Object.values( data.requests );
+            var filter = requests.filter(function( entry ){
+                return keys.every(
+                    key => entry.hasOwnProperty(key) && entry[key] === input[key]
+                );
+            });
+
+            // Format the response back to map
+            var result = Object.fromEntries(
+                filter.map(item => [item.id, item])
+            );
+            res( result );
         });
     }
 };

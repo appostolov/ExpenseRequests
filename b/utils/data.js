@@ -132,31 +132,5 @@ module.exports = {
 
             else if( this.isObjectOrArray( source[ key ] ) ) this.copyFunctions( target[ key ], source[ key ] );
         }
-    },
-
-    jsonJS: function( target ){
-        var result = "";
-        if( Array.isArray( target ) ){
-            result += "[";
-            for( var a = 0; a < target.length; a++ ){
-                if( a ) result += ",";
-                result += this.jsonJS( target[ a ] );
-            }
-            result += "]";
-            return result;
-        }
-        else if( this.isObject( target ) ){
-            result += "{";
-            var keys = Object.keys( target );
-            for( var a = 0; a < keys.length; a++ ){
-                var key = keys[ a ];
-                if( a ) result += ",";
-                result += key + ":" + this.jsonJS( target[ key ] );
-            }
-            result += "}";
-            return result;
-        }
-        else if( this.isString( target ) ) return "'" + target + "'";
-        else return target + "";
     }
 };

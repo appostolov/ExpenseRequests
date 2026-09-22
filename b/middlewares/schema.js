@@ -82,13 +82,11 @@ module.exports = {
 
         return z.object({
             expenseType: z.enum(["Travel" , "Software" , "Equipment" , "Meal" , "Other"], {
-                required_error: "You must select a Expense Type.",
                 invalid_type_error: "Invalid Expense Type selection."
             })
             .optional(),
 
             amountCents: z.number({
-                required_error: "Amount is required",
                 invalid_type_error: "Amount must be a valid number"
             })
             .int("Amount must be a whole number (no decimals)")
@@ -96,7 +94,6 @@ module.exports = {
             .optional(),
             
             description: z.string({
-                required_error: "Description is required",
                 invalid_type_error: "Description must be text"
             })
             .trim()
@@ -126,7 +123,41 @@ module.exports = {
             })
             .trim()
             .min(1, "Other reason justification cannot be empty")
+            .optional()
+        });
+    },
+
+    filter: function( req, res ){
+
+        return z.object({
+            
+            id: z.string({
+                invalid_type_error: "ID must be text"
+            })
+            .trim()
+            .min(1, "ID cannot be empty")
             .optional(),
+
+            requesterId: z.string({
+                invalid_type_error: "Requester must be text"
+            })
+            .trim()
+            .min(1, "Requester cannot be empty")
+            .optional(),
+
+            approverId: z.string({
+                invalid_type_error: "Approver must be text"
+            })
+            .trim()
+            .min(1, "Approver cannot be empty")
+            .optional(),
+
+            status: z.number({
+                invalid_type_error: "Status must be a valid number"
+            })
+            .int("Status must be a whole number (no decimals)")
+            .nonnegative("Status must be 0 or a positive number")
+            .optional()
         });
     }
 };

@@ -12,5 +12,16 @@ module.exports = {
         .catch(function( err ){
             next( err );
         });
+    },
+
+    filter: function( req, res, next ){
+        controller.filter( req, res )
+        .then(function( result ){
+            utilData.set( res, "success/body/requests", result );
+            next();
+        })
+        .catch(function( err ){
+            next( err );
+        });
     }
 };

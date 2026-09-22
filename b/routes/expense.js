@@ -7,4 +7,9 @@ router.post(
     middleware.select
 );
 
+router.post(
+    '/filter',
+    middleware.filter
+);
+
 module.exports = router;
