@@ -21,3 +21,7 @@ What should be the first endpoint?
 
 Time to start with the Front End!
 - As a first step I will import light version of Decodela's FE framework. Even implemented in the past all of it is my creation.
+- The implementations for the current project can be found in /u/js/feature directory.
+
+Lets create the building blocks (components) first and then organize them in views.
+- User entries are a good start. I imagine a colored circle with the first letter and the name next to it. They will be used in the request entries for requester and approver. They will also appear in the details and the history.

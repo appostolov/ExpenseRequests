@@ -9,7 +9,9 @@ requirejs(
         "const/widget",
         "const/color",
         "const/device",
-        "const/event"
+        "const/event",
+        "feature/user/User",
+        "util/Model"
     ],
     function(
         WidgetManager,
@@ -17,19 +19,33 @@ requirejs(
         WIDGET,
         COLOR,
         DEVICE,
-        EVENT
+        EVENT,
+        User,
+        Model
     ){
         WidgetManager.create({
             key: "root",
             type: WIDGET.TYPE.BLOCK,
             className: "absoluteFull column",
             css: [
-                "/u/css/main.css",
-                "/u/css/animations.css"
+                "/css/main.css",
+                "/css/animations.css"
             ],
-            html: "Hello World",
             beforeInit: function(){
                 ColorManager.deploy( COLOR );
-            }
+            },
+            children: [
+                Object.assign(
+                    {},
+                    User,
+                    {
+                        beforeInit: function(){
+                            this.model = new Model({
+                                name: "Alice"
+                            });
+                        }
+                    }
+                )
+            ]
         });
     });
