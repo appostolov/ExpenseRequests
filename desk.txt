@@ -9,3 +9,6 @@ What programming stack to use?
 - The goal is to show my capabilities
 
 I will stick to pure JavaScript, cause switching to TypeScript will increase the efforts and switch the focus from the main goal
+
+What should be the first endpoint?
+- POST user/select because I need to pick the user first
