@@ -8,7 +8,7 @@
       "description": "Customer onsite in Chicago",
       "billable": false
     },
-    "status": "created",
+    "status": "open",
     "events": [
       { "type": "created", "at": "2026-05-01T09:00:00.000Z", "actorId": "u_alice" }
     ]
@@ -56,7 +56,7 @@
       "billable": true,
       "client": "Acme"
     },
-    "status": "created",
+    "status": "open",
     "events": [
       { "type": "created", "at": "2026-05-04T13:00:00.000Z", "actorId": "u_mallory" }
     ]

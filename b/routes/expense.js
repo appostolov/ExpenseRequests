@@ -17,4 +17,9 @@ router.post(
     middleware.insert
 );
 
+router.post(
+    '/update',
+    middleware.update
+);
+
 module.exports = router;
