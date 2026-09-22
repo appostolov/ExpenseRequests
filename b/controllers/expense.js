@@ -41,5 +41,38 @@ module.exports = {
             );
             res( result );
         });
+    },
+
+    insert: function( request ){
+
+        return new Promise( function( res, rej ){
+
+            // Check input's validity
+            var zod = schema.save();
+            var parsed = zod.safeParse( request.body );
+            if( !parsed.success ) return rej({
+                code: 400,
+                body: parsed.error
+            });
+
+            // Generate new entry
+            var id = "REQ-" + Object.keys( data.requests ).length; // Buggy
+            var user = request.get( "x-user-id" );
+            var newRequest = {
+                id: id,
+                requesterId: user,
+                values: parsed.data,
+                status: "created",
+                events: [{
+                    type: "created",
+                    at: new Date().toISOString(),
+                    actorId: user
+                }]
+            };
+            // Save
+            data.requests[ id ] = newRequest;
+            // Response
+            res( newRequest );
+        });
     }
 };

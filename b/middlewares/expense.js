@@ -23,5 +23,16 @@ module.exports = {
         .catch(function( err ){
             next( err );
         });
+    },
+
+    insert: function( req, res, next ){
+        controller.insert( req, res )
+        .then(function( request ){
+            utilData.set( res, "success/body/request", request );
+            next();
+        })
+        .catch(function( err ){
+            next( err );
+        });
     }
 };

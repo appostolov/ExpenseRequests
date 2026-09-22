@@ -152,12 +152,10 @@ module.exports = {
             .min(1, "Approver cannot be empty")
             .optional(),
 
-            status: z.number({
-                invalid_type_error: "Status must be a valid number"
+            status: z.enum(["created" , "submitted" , "approved" , "rejected"], {
+                invalid_type_error: "Invalid status selection."
             })
-            .int("Status must be a whole number (no decimals)")
-            .nonnegative("Status must be 0 or a positive number")
-            .optional()
+            .optional(),
         });
     }
 };

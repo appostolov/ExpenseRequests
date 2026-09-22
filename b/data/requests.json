@@ -8,6 +8,7 @@
       "description": "Customer onsite in Chicago",
       "billable": false
     },
+    "status": "created",
     "events": [
       { "type": "created", "at": "2026-05-01T09:00:00.000Z", "actorId": "u_alice" }
     ]
@@ -21,6 +22,7 @@
       "description": "Lunch with prospect",
       "billable": false
     },
+    "status": "submitted",
     "events": [
       { "type": "created",   "at": "2026-05-02T09:00:00.000Z", "actorId": "u_alice" },
       { "type": "submitted", "at": "2026-05-02T09:05:00.000Z", "actorId": "u_alice", "approverId": "u_carol" }
@@ -36,6 +38,8 @@
       "billable": false,
       "additionalJustification": "Replaces three monthly subscriptions; cheaper annually"
     },
+    "status": "approved",
+    "approverId": "u_trent",
     "events": [
       { "type": "created",   "at": "2026-05-03T10:00:00.000Z", "actorId": "u_bob" },
       { "type": "submitted", "at": "2026-05-03T10:10:00.000Z", "actorId": "u_bob", "approverId": "u_trent" },
@@ -52,6 +56,7 @@
       "billable": true,
       "client": "Acme"
     },
+    "status": "created",
     "events": [
       { "type": "created", "at": "2026-05-04T13:00:00.000Z", "actorId": "u_mallory" }
     ]

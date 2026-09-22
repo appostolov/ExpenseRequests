@@ -12,4 +12,9 @@ router.post(
     middleware.filter
 );
 
+router.post(
+    '/insert',
+    middleware.insert
+);
+
 module.exports = router;

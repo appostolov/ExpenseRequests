@@ -14,3 +14,4 @@ What should be the first endpoint?
 - POST user/select because I need to pick the user first
 - POST expense/select is next because I need the list
 - POST expense/filter next for showing details and future search
+- POST expense/insert
