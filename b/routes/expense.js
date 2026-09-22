@@ -27,4 +27,9 @@ router.post(
     middleware.submit
 );
 
+router.post(
+    '/approve',
+    middleware.approve
+);
+
 module.exports = router;

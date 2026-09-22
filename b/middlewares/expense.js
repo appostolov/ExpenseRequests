@@ -56,5 +56,16 @@ module.exports = {
         .catch(function( err ){
             next( err );
         });
+    },
+
+    approve: function( req, res, next ){
+        controller.approve( req, res )
+        .then(function( request ){
+            utilData.set( res, "success/body/request", request );
+            next();
+        })
+        .catch(function( err ){
+            next( err );
+        });
     }
 };

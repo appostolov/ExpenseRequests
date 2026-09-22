@@ -23,6 +23,7 @@
       "billable": false
     },
     "status": "submitted",
+    "approverId": "u_carol",
     "events": [
       { "type": "created",   "at": "2026-05-02T09:00:00.000Z", "actorId": "u_alice" },
       { "type": "submitted", "at": "2026-05-02T09:05:00.000Z", "actorId": "u_alice", "approverId": "u_carol" }

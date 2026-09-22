@@ -181,6 +181,48 @@ module.exports = {
         }.bind( this ));
     },
 
+    approve: function( request ){
+
+        return new Promise( function( res, rej ){
+
+            var item = data.requests[ request.body.id ];
+            
+            if( !item ) return rej({
+                code: 404,
+                body: {
+                    message: "Item not found"
+                }
+            });
+
+            var user = request.get( "x-user-id" );
+            if( item.approverId !== user ) return rej({
+                code: 403,
+                body: {
+                    message: "Unauthorized access"
+                }
+            });
+            
+            if( item.status !== "submitted" ) return rej({
+                code: 400,
+                body: {
+                    message: "Request is not submitted for apporove"
+                }
+            });
+
+            var action = request.body.approve ? "approved" : "rejected"
+
+            // Update the request
+            item.status = action;
+            item.events.push({
+                type: action,
+                at: new Date().toISOString(),
+                actorId: user
+            });
+            // Response
+            res( item );
+        });
+    },
+
     newExpenseRequest: function( values ){
         var id = "REQ-" + Object.keys( data.requests ).length; // Buggy
         var user = request.get( "x-user-id" );
