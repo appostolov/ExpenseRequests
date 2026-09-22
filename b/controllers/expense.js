@@ -1,7 +1,12 @@
+var data = require( "../data/export" );
+
 module.exports = {
 
-    save: function( request ){
+    select: function( request ){
 
-        return new Promise( function( res, rej ){});
+        return new Promise( function( res, rej ){
+
+            res( data.requests );
+        });
     }
 };

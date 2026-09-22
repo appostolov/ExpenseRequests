@@ -12,3 +12,4 @@ I will stick to pure JavaScript, cause switching to TypeScript will increase the
 
 What should be the first endpoint?
 - POST user/select because I need to pick the user first
+- POST expense/select is next because I need the list

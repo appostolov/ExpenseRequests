@@ -3,8 +3,8 @@ var router = express.Router();
 var middleware = require( "../middlewares/expense" );
 
 router.post(
-    '/save',
-    middleware.save
+    '/select',
+    middleware.select
 );
 
 module.exports = router;
