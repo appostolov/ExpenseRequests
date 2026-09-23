@@ -1,10 +1,12 @@
 define([
     "const/widget",
+    "const/icon",
     "manager/DataManager",
     "util/Model",
     "const/device"
 ], function(
     WIDGET,
+    ICON,
     DataManager,
     Model,
     DEVICE
@@ -21,6 +23,7 @@ define([
             switch( this.dialogType ){
                 case WIDGET.DIALOG.SUCCESS:
                     standard = {
+                        icon: ICON.CHECK,
                         css: {
                             color: "successColor",
                             backgroundColor: "successBackgroundColor",
@@ -32,6 +35,7 @@ define([
                     break;
                 case WIDGET.DIALOG.ERROR:
                     standard = {
+                        icon: ICON.ERROR,
                         css: {
                             color: "errorColor",
                             backgroundColor: "errorBackgroundColor",
@@ -43,6 +47,7 @@ define([
                     break;
                 case WIDGET.DIALOG.WARNING:
                     standard = {
+                        icon: ICON.WARNING,
                         css: {
                             color: "warningColor",
                             backgroundColor: "warningBackgroundColor",
@@ -54,6 +59,7 @@ define([
                     break;
                 default:
                     standard = {
+                        icon: ICON.INFO,
                         css: {
                             color: "mainColor",
                             backgroundColor: "mainBackgroundColor",
@@ -82,6 +88,7 @@ define([
                                 type: WIDGET.TYPE.BLOCK,
                                 className: "flexNone marginRightSmall",
                                 handleModel: function( data ){
+                                    this.setIcon( data.icon );
                                     this.node.classList.add( data.css.color );
                                 },
                                 afterInit: function(){
@@ -102,7 +109,7 @@ define([
                             },
                             {
                                 type: WIDGET.TYPE.BUTTON,
-                                html: "X",
+                                icon: ICON.CLOSE,
                                 events: [
                                     {
                                         type: "click",

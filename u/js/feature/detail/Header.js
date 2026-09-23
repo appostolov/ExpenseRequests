@@ -3,13 +3,15 @@ define([
     "const/state",
     "const/icon",
     "util/Model",
-    "manager/URLManager"
+    "manager/URLManager",
+    "dialog/Standard"
 ], function(
     WIDGET,
     STATE,
     ICON,
     Model,
-    URLManager
+    URLManager,
+    Dialog
 ){
     return {
         key: "header",
@@ -63,10 +65,31 @@ define([
                                     values: data.values
                                 },
                                 success: function( data ){
-                                    debugger;
+                                    header.model.setData( data.request );
+                                    this.addChildren([
+                                        Object.assign(
+                                            {
+                                                dialogType: WIDGET.DIALOG.SUCCESS,
+                                                data: {
+                                                    message: "Request submitted"
+                                                }
+                                            },
+                                            Dialog
+                                        )
+                                    ]);
                                 },
                                 error: function( data ){
-                                    debugger;
+                                    this.addChildren([
+                                        Object.assign(
+                                            {
+                                                dialogType: WIDGET.DIALOG.ERROR,
+                                                data: {
+                                                    message: "Request submit failed"
+                                                }
+                                            },
+                                            Dialog
+                                        )
+                                    ]);
                                 }
                             });
                         }

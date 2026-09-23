@@ -555,6 +555,15 @@ define([
 		}
 	};
 
+	Base.prototype.setIcon = function( icon ){
+
+		if( this.icon ) this.node.classList.remove.apply( this.node.classList, this.icon.split( " " ) );
+
+		if( icon ) this.node.classList.add.apply( this.node.classList, icon.split( " " ) );
+
+		this.icon = icon;
+	};
+
 	Base.prototype.request = function( data ){
 
 		var self = this;
