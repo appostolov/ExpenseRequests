@@ -22,7 +22,7 @@ module.exports = {
             if( !parsed.success ) return rej({
                 code: 400,
                 body: {
-                    message: "Invalid filters"
+                    errors: parsed.error.format()._errors
                 }
             });
 
@@ -53,7 +53,9 @@ module.exports = {
             var parsed = zod.safeParse( request.body );
             if( !parsed.success ) return rej({
                 code: 400,
-                body: parsed.error
+                body: {
+                    errors: parsed.error.format()._errors
+                }
             });
 
             // Generate new entry
@@ -74,14 +76,16 @@ module.exports = {
             var parsed = zod.safeParse( request.body.values );
             if( !parsed.success ) return rej({
                 code: 400,
-                body: parsed.error
+                body: {
+                    errors: parsed.error.format()._errors
+                }
             });
 
             var item = data.requests[ request.body.id ];
             if( !item ) return rej({
                 code: 404,
                 body: {
-                    message: "Item not found"
+                    errors: [ "Item not found" ]
                 }
             });
 
@@ -89,14 +93,14 @@ module.exports = {
             if( item.requesterId !== user ) return rej({
                 code: 403,
                 body: {
-                    message: "Unauthorized access"
+                    errors: [ "Unauthorized access" ]
                 }
             });
             
             if( item.status === "approved" ) return rej({
                 code: 400,
                 body: {
-                    message: "Request is approved"
+                    errors: [ "Request is approved" ]
                 }
             });
 
@@ -122,7 +126,9 @@ module.exports = {
             var parsed = zod.safeParse( request.body.values );
             if( !parsed.success ) return rej({
                 code: 400,
-                body: parsed.error
+                body: {
+                    errors: parsed.error.format()._errors
+                }
             });
 
             var item;
@@ -132,7 +138,7 @@ module.exports = {
             if( !item ) return rej({
                 code: 404,
                 body: {
-                    message: "Item not found"
+                    errors: [ "Item not found" ]
                 }
             });
 
@@ -140,28 +146,28 @@ module.exports = {
             if( item.requesterId !== user ) return rej({
                 code: 403,
                 body: {
-                    message: "Unauthorized access"
+                    errors: [ "Unauthorized access" ]
                 }
             });
             
             if( item.status === "approved" ) return rej({
                 code: 400,
                 body: {
-                    message: "Can't submit approved request"
+                    errors: [ "Can't submit approved request" ]
                 }
             });
 
             if( item.status === "submitted" ) return rej({
                 code: 400,
                 body: {
-                    message: "Can't submit twice"
+                    errors: [ "Can't submit twice" ]
                 }
             });
 
             if( item.status === "rejected" && dataUtils.equal( request.body.values, item.values ) ) return rej({
                 code: 400,
                 body: {
-                    message: "Can't submit rejected request without changes"
+                    errors: [ "Can't submit rejected request without changes" ]
                 }
             });
 
@@ -169,7 +175,7 @@ module.exports = {
             if( !approver ) return rej({
                 code: 400,
                 body: {
-                    message: "Back off finance guy"
+                    errors: [ "Back off finance guy" ]
                 }
             });
 
@@ -197,7 +203,7 @@ module.exports = {
             if( !item ) return rej({
                 code: 404,
                 body: {
-                    message: "Item not found"
+                    errors: [ "Item not found" ]
                 }
             });
 
@@ -205,14 +211,14 @@ module.exports = {
             if( item.approverId !== user ) return rej({
                 code: 403,
                 body: {
-                    message: "Unauthorized access"
+                    errors: [ "Unauthorized access" ]
                 }
             });
             
             if( item.status !== "submitted" ) return rej({
                 code: 400,
                 body: {
-                    message: "Request is not submitted for apporove"
+                    errors: [ "Request is not submitted for apporove" ]
                 }
             });
 
