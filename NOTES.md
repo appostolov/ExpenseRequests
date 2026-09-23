@@ -1,10 +1,10 @@
 # Expense Requests | Petar Apostolov
 
 ## Built & Run
-1. Clone the repo `git clone https://github.com/appostolov/ExpenseRequests.git`
-2. Open Git Bash in the repo's folder ( let's call it `/root')
-3. Run `cd /b` in Git Bash to navigate to `/root/b`
-4. Run `npm install` to load node modules ( package.json is in `/root/b` )
+1. Open Git Bash
+2. Clone the repo `git clone https://github.com/appostolov/ExpenseRequests.git`
+3. Run `cd ExpenseRequests/b` in Git Bash to navigate to the server location
+4. Run `npm install` to load node modules ( package.json is in `ExpenseRequests/b` )
 5. Run `node index.js` to start the back end server
 6. Open `http://localhost:3000/` in the browser
 
