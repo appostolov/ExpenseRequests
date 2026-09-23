@@ -51,6 +51,9 @@ The Detail view of the request will be Header with actions and History in the bo
 
 I think it is time for the Header and Approve, Reject, Submit and Edit actions.
 
+OK
+I implemented submit and handle the success. I standartized the errors on the BE, but not tested them yet. I plan to implement Approve and Reject, because they are similar to Submit, the BE is ready and it will be copy paste from Submit. Then I will handle Create and Edit and errors.
+
 
 
 

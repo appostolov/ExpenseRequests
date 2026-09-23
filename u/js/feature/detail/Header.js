@@ -109,7 +109,51 @@ define([
                     if( data.approverId !== STATE.user.id ) this.hide();
                     else if( data.status !== "submitted" ) this.hide();
                     else this.show();
-                }
+                },
+                events: [
+                    {
+                        type: "click",
+                        self: true,
+                        listener: function(){
+                            var header = this.getParentBy({ key: "header" });
+                            var data = header.model.getData();
+                            this.request({
+                                method: "POST",
+                                url: "/expense/approve",
+                                data: {
+                                    id: data.id
+                                },
+                                success: function( data ){
+                                    header.model.setData( data.request );
+                                    this.addChildren([
+                                        Object.assign(
+                                            {
+                                                dialogType: WIDGET.DIALOG.SUCCESS,
+                                                data: {
+                                                    message: "Request rejected"
+                                                }
+                                            },
+                                            Dialog
+                                        )
+                                    ]);
+                                },
+                                error: function( data ){
+                                    this.addChildren([
+                                        Object.assign(
+                                            {
+                                                dialogType: WIDGET.DIALOG.ERROR,
+                                                data: {
+                                                    message: "Request reject failed"
+                                                }
+                                            },
+                                            Dialog
+                                        )
+                                    ]);
+                                }
+                            });
+                        }
+                    }
+                ]
             },
             {
                 type: WIDGET.TYPE.BUTTON,
@@ -124,7 +168,52 @@ define([
                     if( data.approverId !== STATE.user.id ) this.hide();
                     else if( data.status !== "submitted" ) this.hide();
                     else this.show();
-                }
+                },
+                events: [
+                    {
+                        type: "click",
+                        self: true,
+                        listener: function(){
+                            var header = this.getParentBy({ key: "header" });
+                            var data = header.model.getData();
+                            this.request({
+                                method: "POST",
+                                url: "/expense/approve",
+                                data: {
+                                    id: data.id,
+                                    approve: true
+                                },
+                                success: function( data ){
+                                    header.model.setData( data.request );
+                                    this.addChildren([
+                                        Object.assign(
+                                            {
+                                                dialogType: WIDGET.DIALOG.SUCCESS,
+                                                data: {
+                                                    message: "Request approved"
+                                                }
+                                            },
+                                            Dialog
+                                        )
+                                    ]);
+                                },
+                                error: function( data ){
+                                    this.addChildren([
+                                        Object.assign(
+                                            {
+                                                dialogType: WIDGET.DIALOG.ERROR,
+                                                data: {
+                                                    message: "Request approve failed"
+                                                }
+                                            },
+                                            Dialog
+                                        )
+                                    ]);
+                                }
+                            });
+                        }
+                    }
+                ]
             },
             {
                 type: WIDGET.TYPE.BUTTON,
