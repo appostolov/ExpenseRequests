@@ -147,14 +147,21 @@ module.exports = {
             if( item.status === "approved" ) return rej({
                 code: 400,
                 body: {
-                    message: "Request is approved"
+                    message: "Can't submit approved request"
+                }
+            });
+
+            if( item.status === "submitted" ) return rej({
+                code: 400,
+                body: {
+                    message: "Can't submit twice"
                 }
             });
 
             if( item.status === "rejected" && dataUtils.equal( request.body.values, item.values ) ) return rej({
                 code: 400,
                 body: {
-                    message: "Update before re-submit rejected requests"
+                    message: "Can't submit rejected request without changes"
                 }
             });
 

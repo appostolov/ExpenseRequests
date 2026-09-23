@@ -17,6 +17,9 @@ define([
         className: "column overflowAuto",
         beforeInit: function(){
             this.model = new Model();
+            this.getRequests();
+        },
+        getRequests: function(){
             this.request({
                 method: "POST",
                 url: "/expense/select",
@@ -77,6 +80,16 @@ define([
                 );
             }
             this.addChildren( children );
-        }
+        },
+        events: [
+            {
+                type: "hashchange",
+                node: window,
+                listener: function( e ){
+                    if( URLManager.route.route !== this.route ) return;
+                    this.getRequests();
+                }
+            }
+        ]
     };
 });

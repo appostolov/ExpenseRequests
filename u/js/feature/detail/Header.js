@@ -28,6 +28,8 @@ define([
                 },
                 onModelChange: function( data ){
                     if( data.requesterId !== STATE.user.id ) this.hide();
+                    else if( data.status === "submitted" ) this.hide();
+                    else if( data.status === "approved" ) this.hide();
                     else this.show();
                 }
             },
@@ -42,8 +44,34 @@ define([
                 },
                 onModelChange: function( data ){
                     if( data.requesterId !== STATE.user.id ) this.hide();
+                    else if( data.status === "submitted" ) this.hide();
+                    else if( data.status === "approved" ) this.hide();
                     else this.show();
-                }
+                },
+                events: [
+                    {
+                        type: "click",
+                        self: true,
+                        listener: function(){
+                            var header = this.getParentBy({ key: "header" });
+                            var data = header.model.getData();
+                            this.request({
+                                method: "POST",
+                                url: "/expense/submit",
+                                data: {
+                                    id: data.id,
+                                    values: data.values
+                                },
+                                success: function( data ){
+                                    debugger;
+                                },
+                                error: function( data ){
+                                    debugger;
+                                }
+                            });
+                        }
+                    }
+                ]
             },
             {
                 type: WIDGET.TYPE.BUTTON,
@@ -56,6 +84,7 @@ define([
                 },
                 onModelChange: function( data ){
                     if( data.approverId !== STATE.user.id ) this.hide();
+                    else if( data.status !== "submitted" ) this.hide();
                     else this.show();
                 }
             },
@@ -70,6 +99,7 @@ define([
                 },
                 onModelChange: function( data ){
                     if( data.approverId !== STATE.user.id ) this.hide();
+                    else if( data.status !== "submitted" ) this.hide();
                     else this.show();
                 }
             },
