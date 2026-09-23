@@ -50,7 +50,7 @@ module.exports = {
 
             // Check input's validity
             var zod = schema.save();
-            var parsed = zod.safeParse( request.body );
+            var parsed = zod.safeParse( request.body.values );
             if( !parsed.success ) return rej({
                 code: 400,
                 body: {
