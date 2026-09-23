@@ -419,8 +419,6 @@ define([
 
 		if( DataManager.isFunction( this.beforeClose ) ) this.beforeClose();
 
-		this.stopDynamicFont();
-
 		this.closeChildren();
 		
 		this.unbind();

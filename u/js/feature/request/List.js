@@ -2,12 +2,14 @@ define([
     "const/widget",
     "util/Model",
     "const/state",
-    "feature/request/Entry"
+    "feature/request/Entry",
+    "manager/URLManager"
 ], function(
     WIDGET,
     Model,
     STATE,
-    Entry
+    Entry,
+    URLManager
 ){
     return {
         key: "requests",
@@ -61,6 +63,12 @@ define([
                                     type: "click",
                                     self: true,
                                     listener: function(){
+                                        URLManager.navigate({
+                                            route: "request/?id",
+                                            params: {
+                                                id: this.request.id
+                                            }
+                                        });
                                     }
                                 }
                             ]

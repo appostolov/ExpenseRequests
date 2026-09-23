@@ -46,6 +46,11 @@ I changed my mind and I will implement the edit form and the history view only, 
 
 Lets start from the Event entry, because I can reuse the Request entry.
 
+The entry is ready, now I need the History.
+The Detail view of the request will be Header with actions and History in the body of the view with the events happened. Detail will appear on "request/?id" route.
+
+I think it is time for the Header and Approve, Reject, Submit and Edit actions.
+
 
 
 

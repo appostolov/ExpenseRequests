@@ -29,7 +29,8 @@ requirejs(
             className: "absoluteFull column",
             css: [
                 "/css/main.css",
-                "/css/animations.css"
+                "/css/animations.css",
+                "https://use.fontawesome.com/releases/v6.6.0/css/all.css"
             ],
             beforeInit: function(){
                 ColorManager.deploy( COLOR );

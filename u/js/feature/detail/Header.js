@@ -1,0 +1,94 @@
+define([
+    "const/widget",
+    "const/state",
+    "const/icon",
+    "util/Model",
+    "manager/URLManager"
+], function(
+    WIDGET,
+    STATE,
+    ICON,
+    Model,
+    URLManager
+){
+    return {
+        key: "header",
+        type: WIDGET.TYPE.BLOCK,
+        className: "flexNone flexWrap justifyContentEnd borderSolid borderBottomTiny lightTextBorderColor",
+        children: [
+            {
+                type: WIDGET.TYPE.BUTTON,
+                buttonType: WIDGET.BUTTON.TYPE.BORDER,
+                icon: ICON.EDIT,
+                html: " Edit",
+                className: "wrapable marginSmall",
+                afterInit: function(){
+                    var header = this.getParentBy({ key: "header" })
+                    this.modelSubscribe( header.model, this.onModelChange.bind( this ) );
+                },
+                onModelChange: function( data ){
+                    if( data.requesterId !== STATE.user.id ) this.hide();
+                    else this.show();
+                }
+            },
+            {
+                type: WIDGET.TYPE.BUTTON,
+                buttonType: false,
+                html: "Submit",
+                className: "wrapable submittedBackgroundColor borderNone marginSmall",
+                afterInit: function(){
+                    var header = this.getParentBy({ key: "header" })
+                    this.modelSubscribe( header.model, this.onModelChange.bind( this ) );
+                },
+                onModelChange: function( data ){
+                    if( data.requesterId !== STATE.user.id ) this.hide();
+                    else this.show();
+                }
+            },
+            {
+                type: WIDGET.TYPE.BUTTON,
+                buttonType: false,
+                html: "Reject",
+                className: "wrapable rejectedBackgroundColor borderNone marginSmall",
+                afterInit: function(){
+                    var header = this.getParentBy({ key: "header" })
+                    this.modelSubscribe( header.model, this.onModelChange.bind( this ) );
+                },
+                onModelChange: function( data ){
+                    if( data.approverId !== STATE.user.id ) this.hide();
+                    else this.show();
+                }
+            },
+            {
+                type: WIDGET.TYPE.BUTTON,
+                buttonType: false,
+                html: "Approve",
+                className: "wrapable approvedBackgroundColor borderNone marginSmall",
+                afterInit: function(){
+                    var header = this.getParentBy({ key: "header" })
+                    this.modelSubscribe( header.model, this.onModelChange.bind( this ) );
+                },
+                onModelChange: function( data ){
+                    if( data.approverId !== STATE.user.id ) this.hide();
+                    else this.show();
+                }
+            },
+            {
+                type: WIDGET.TYPE.BUTTON,
+                icon: ICON.CLOSE,
+                className: "wrapable marginSmall",
+                events: [
+                    {
+                        type: "click",
+                        self: true,
+                        listener: function(){
+                            URLManager.navigate({
+                                route: "request"
+                            });
+                        }
+                    }
+                ]
+            }
+        ]
+    };
+});

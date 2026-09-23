@@ -8,7 +8,8 @@ define([
     "manager/URLManager",
     "feature/NotFound",
     "feature/user/Picker",
-    "feature/request/List"
+    "feature/request/List",
+    "feature/detail/Detail"
 ], function(
     WIDGET,
     EVENT,
@@ -19,7 +20,8 @@ define([
     URLManager,
     NotFound,
     Picker,
-    Requests
+    Requests,
+    Detail
 ){
 
     return {
@@ -28,7 +30,8 @@ define([
         pages: [
             NotFound,
             Picker,
-            Requests
+            Requests,
+            Detail
         ],
         afterInit: function(){
 
@@ -48,8 +51,11 @@ define([
                 case "users":
                     this.showContent( "users" );
                     break;
-                case "requests":
+                case "request":
                     this.showContent( "requests" );
+                    break;
+                case "request/?id":
+                    this.showContent( "detail" );
                     break;
                 default:
                     this.showContent( "notFound" );
@@ -93,7 +99,7 @@ define([
             {
                 type: EVENT.USER.PICKED,
                 listener: function( e ){
-                    URLManager.navigate( { route: "requests" } );
+                    URLManager.navigate( { route: "request" } );
                 }
             }
         ]

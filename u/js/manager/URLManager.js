@@ -8,7 +8,8 @@ define([
         routes: [
             "",
             "users",
-            "requests"
+            "request",
+            "request/?id"
         ],
         get route(){
             return this.parse( window.location.hash ) || {};

@@ -12,6 +12,10 @@ define(function(){
         glass: "rgb(255 255 255 / 80%)",
         lightGlass: "rgb(255 255 255 / 20%)",
         smoke: "rgb(0 0 0 / 20%)",
-        transparent: "rgb(255 255 255 / 0%)"
+        transparent: "rgb(255 255 255 / 0%)",
+        open: "lightgrey",
+        submitted: "lightblue",
+        approved: "greenyellow",
+        rejected: "red"
 	};
 });
