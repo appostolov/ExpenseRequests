@@ -11,13 +11,6 @@ define([
         key: "user",
         type: WIDGET.TYPE.BLOCK,
         className: "flexNone",
-        afterInit: function(){
-            this.modelSubscribe( this.model, this.onModelChange.bind( this ) );
-        },
-        onModelChange: function( data ){
-            if( DataManager.isObjectEmpty( data ) ) this.hide();
-            else this.show();
-        },
         children: [
             {
                 type: WIDGET.TYPE.BLOCK,

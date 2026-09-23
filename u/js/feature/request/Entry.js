@@ -21,7 +21,6 @@ define([
                 User,
                 {
                     beforeInit: function(){
-                        var entry = this.getParentBy({ key: "entry" });
                         this.model = new Model( this.getUser() );
                     },
                     getUser: function(){
@@ -76,7 +75,7 @@ define([
             ),
             {
                 type: WIDGET.TYPE.BLOCK,
-                className: "wrapable justifyContentEnd paddingSmall bold",
+                className: "flexNone wrapable justifyContentEnd paddingSmall bold",
                 children: [
                     Object.assign(
                         {},

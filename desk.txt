@@ -39,6 +39,12 @@ Now we have routing engine and user picker so we can continue to the requests li
 	I have component for users, most of the fields are raw data
 	I think only the Status needs special attention - I will create Status UI component
 
+Now I am wondering what to happen when I click request entry, because I have more details to show and also events view. I do not want to put them in the same view.
+I plan to show a page with the request details and a header, where I can switch to the events view and vice versa. In the same header I will put buttons for approve, reject and edit, so the user can act from every corner of the information.
+
+I changed my mind and I will implement the edit form and the history view only, because the form will contain the needed details about the request. With read only details will be cleaner, but not needed in the context of the goals of that task.
+
+Lets start from the Event entry, because I can reuse the Request entry.
 
 
 
