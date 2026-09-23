@@ -62,6 +62,10 @@ There is an imperfection that hiden fields are still sent to the server, but thi
 
 Now it is time for Create.
 
+Create is done. Copy of Edit worked out of the box.
+Now is time for Errors. I fixed the error format on BE so proper UI is needed.
+I will implement Error Dialog to handle error format and reuse it everywhere.
+
 
 
 

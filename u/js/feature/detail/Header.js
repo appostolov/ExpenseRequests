@@ -4,14 +4,16 @@ define([
     "const/icon",
     "util/Model",
     "manager/URLManager",
-    "dialog/Standard"
+    "dialog/Standard",
+    "dialog/Error"
 ], function(
     WIDGET,
     STATE,
     ICON,
     Model,
     URLManager,
-    Dialog
+    Dialog,
+    Error
 ){
     return {
         key: "header",
@@ -96,12 +98,9 @@ define([
                                     this.addChildren([
                                         Object.assign(
                                             {
-                                                dialogType: WIDGET.DIALOG.ERROR,
-                                                data: {
-                                                    message: "Request submit failed"
-                                                }
+                                                error: data
                                             },
-                                            Dialog
+                                            Error
                                         )
                                     ]);
                                 }
@@ -155,12 +154,9 @@ define([
                                     this.addChildren([
                                         Object.assign(
                                             {
-                                                dialogType: WIDGET.DIALOG.ERROR,
-                                                data: {
-                                                    message: "Request reject failed"
-                                                }
+                                                error: data
                                             },
-                                            Dialog
+                                            Error
                                         )
                                     ]);
                                 }
@@ -215,12 +211,9 @@ define([
                                     this.addChildren([
                                         Object.assign(
                                             {
-                                                dialogType: WIDGET.DIALOG.ERROR,
-                                                data: {
-                                                    message: "Request approve failed"
-                                                }
+                                                error: data
                                             },
-                                            Dialog
+                                            Error
                                         )
                                     ]);
                                 }
