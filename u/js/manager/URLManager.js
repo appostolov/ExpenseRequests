@@ -7,7 +7,8 @@ define([
         last: null,
         routes: [
             "",
-            "users"
+            "users",
+            "requests"
         ],
         get route(){
             return this.parse( window.location.hash ) || {};

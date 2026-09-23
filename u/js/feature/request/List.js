@@ -1,0 +1,74 @@
+define([
+    "const/widget",
+    "util/Model",
+    "const/state",
+    "feature/request/Entry"
+], function(
+    WIDGET,
+    Model,
+    STATE,
+    Entry
+){
+    return {
+        key: "requests",
+        type: WIDGET.TYPE.BLOCK,
+        className: "column overflowAuto",
+        beforeInit: function(){
+            this.model = new Model();
+            this.request({
+                method: "POST",
+                url: "/expense/select",
+                success: function( data ){
+                    this.model.setData( data.requests );
+                },
+                error: function(){
+                    // Something went wrong
+                }
+            });
+        },
+        afterInit: function(){
+            this.modelSubscribe( this.model, this.onModelChange.bind( this ) );
+        },
+        onModelChange: function( data ){
+            this.closeChildren();
+
+            var requests = Object.values( data );
+
+            if( !Array.isArray( requests ) || !requests.length ) return;
+
+            var children = [];
+
+            for( var a = 0; a < requests.length; a++ ){
+
+                if( a ){
+                    children.push({
+                        type: WIDGET.TYPE.BLOCK,
+                        className: "flexNone tiny lighterBackgroundColor"
+                    });
+                }
+
+                children.push(
+                    Object.assign(
+                        {},
+                        Entry,
+                        {
+                            request: requests[ a ],
+                            beforeInit: function(){
+                                this.model = new Model( this.request )
+                            },
+                            events: [
+                                {
+                                    type: "click",
+                                    self: true,
+                                    listener: function(){
+                                    }
+                                }
+                            ]
+                        }
+                    )
+                );
+            }
+            this.addChildren( children );
+        }
+    };
+});

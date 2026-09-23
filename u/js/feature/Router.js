@@ -2,20 +2,24 @@ define([
     "const/widget",
     "const/event",
     "const/config",
+    "const/state",
     "manager/UserManager",
     "manager/DataManager",
     "manager/URLManager",
     "feature/NotFound",
-    "feature/user/Picker"
+    "feature/user/Picker",
+    "feature/request/List"
 ], function(
     WIDGET,
     EVENT,
     CONFIG,
+    STATE,
     UserManager,
     DataManager,
     URLManager,
     NotFound,
-    Picker
+    Picker,
+    Requests
 ){
 
     return {
@@ -23,7 +27,8 @@ define([
         className: "positionRelative maxWidth960 backBackgroundColor",
         pages: [
             NotFound,
-            Picker
+            Picker,
+            Requests
         ],
         afterInit: function(){
 
@@ -35,12 +40,16 @@ define([
             var route = DataManager.isObjectEmpty( URLManager.route ) ? null : URLManager.route.route;
 
             if( route === this.lastRoute ) return;
+            if( route !== "users" && !STATE.user ) return URLManager.navigate( { route: "users" } );
             this.lastRoute = route;
 
             switch( route ){
                 case "":
                 case "users":
                     this.showContent( "users" );
+                    break;
+                case "requests":
+                    this.showContent( "requests" );
                     break;
                 default:
                     this.showContent( "notFound" );
@@ -79,6 +88,12 @@ define([
                 node: window,
                 listener: function( e ){
                     this.handleURLHash();
+                }
+            },
+            {
+                type: EVENT.USER.PICKED,
+                listener: function( e ){
+                    URLManager.navigate( { route: "requests" } );
                 }
             }
         ]

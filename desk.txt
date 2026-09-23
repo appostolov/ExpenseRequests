@@ -28,3 +28,24 @@ Lets create the building blocks (components) first and then organize them in vie
 
 I can create other components like status mark, request entries and events, but lets switch to some FE routing and implement the user picker for the start, the route to requests list on user selection.
 - in the user picker I will use two important channels for spreading data - central state and custom events. The users loaded from BE are cached in the cantral state, while user pick will fire event so any component(widget) in the UI can subscribe and act on such change, while have the central state available.
+
+Now we have routing engine and user picker so we can continue to the requests list
+- What I see in the request list entries?
+	- Requester
+	- Type
+	- Amount
+	- Approver
+	- Status
+	I have component for users, most of the fields are raw data
+	I think only the Status needs special attention - I will create Status UI component
+
+
+
+
+
+
+
+
+
+
+

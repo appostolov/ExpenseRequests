@@ -111,6 +111,11 @@ body{
     flex-wrap: wrap !important;
 }
 
+.wrapable{
+    flex-shrink: 0 !important;
+    flex-basis: max-content !important;
+}
+
 .relativeFull{
     position: relative;
     top: 0;

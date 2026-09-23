@@ -1,4 +1,8 @@
-define([], function(){
+define([
+    "const/state"
+], function(
+    STATE
+){
 
     return {
 
@@ -35,6 +39,7 @@ define([], function(){
                 };
                 xhttp.open( data.method, data.url, true);
                 xhttp.setRequestHeader( "Content-Type", "application/json" );
+                if( STATE.user ) xhttp.setRequestHeader( "X-User-Id", STATE.user.id );
                 if( data.headers ){
                     for( var name in data.headers ){
                         if( !data.headers.hasOwnProperty( name ) ) continue;
