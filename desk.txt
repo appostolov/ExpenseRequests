@@ -56,6 +56,10 @@ I implemented submit and handle the success. I standartized the errors on the BE
 
 It is time for Create and Edit both of which will use the same UI - Form. So I start with the Form.
 
+The Form is ready. Now I want to Save and Submit requests.
+The Save and Submit seems to work out of the box except a bug that was fixed on the BE.
+There is an imperfection that hiden fields are still sent to the server, but this might be considered a feature.
+
 
 
 

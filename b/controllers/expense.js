@@ -132,7 +132,15 @@ module.exports = {
             });
 
             var item;
-            if( request.body.id ) item = data.requests[ request.body.id ];
+            if( request.body.id ){
+                item = Object.assign(
+                    {},
+                    data.requests[ request.body.id ],
+                    {
+                        values: parsed.data
+                    }
+                );
+            }
             else item = this.newExpenseRequest( parsed.data );
             
             if( !item ) return rej({
@@ -180,7 +188,6 @@ module.exports = {
             });
 
             // Update the request
-            item.values = request.body.values;
             item.status = "submitted";
             item.approverId = approver.id;
             item.events.push({
@@ -189,6 +196,8 @@ module.exports = {
                 actorId: user,
                 approverId: approver.id
             });
+            // Save
+            data.requests[ request.body.id ] = item;
             // Response
             res( item );
         }.bind( this ));
@@ -258,6 +267,6 @@ module.exports = {
         var approver = data.users[ requester.managerId ];
         if( request.values.amountCents >= 100000 || !approver ) approver = finance;
         
-        if( approver !== requester && approver !== finance ) return approver;
+        if( approver !== requester ) return approver;
     }
 };
