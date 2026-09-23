@@ -22,7 +22,7 @@ define([
                 type: WIDGET.TYPE.BUTTON,
                 buttonType: WIDGET.BUTTON.TYPE.BORDER,
                 html: "Save",
-                className: "wrapable submittedBackgroundColor borderNone marginSmall",
+                className: "wrapable marginSmall",
                 events: [
                     {
                         type: "click",

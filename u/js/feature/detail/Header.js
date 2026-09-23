@@ -33,7 +33,21 @@ define([
                     else if( data.status === "submitted" ) this.hide();
                     else if( data.status === "approved" ) this.hide();
                     else this.show();
-                }
+                },
+                events: [
+                    {
+                        type: "click",
+                        self: true,
+                        listener: function(){
+                            URLManager.navigate({
+                                route: "request/?id/edit",
+                                params: {
+                                    id: URLManager.route.params.id
+                                }
+                            });
+                        }
+                    }
+                ]
             },
             {
                 type: WIDGET.TYPE.BUTTON,
