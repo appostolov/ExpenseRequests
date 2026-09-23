@@ -22,7 +22,8 @@ module.exports = {
             if( !parsed.success ) return rej({
                 code: 400,
                 body: {
-                    errors: parsed.error.format()._errors
+                    message: "Invalid Filters",
+                    errors: parsed.error.flatten().fieldErrors
                 }
             });
 
@@ -54,14 +55,15 @@ module.exports = {
             if( !parsed.success ) return rej({
                 code: 400,
                 body: {
-                    errors: parsed.error.format()._errors
+                    message: "Invalid Fields",
+                    errors: parsed.error.flatten().fieldErrors
                 }
             });
 
             // Generate new entry
-            var newRequest = this.newExpenseRequest( parsed.data );
+            var newRequest = this.newExpenseRequest( request.get( "x-user-id" ), parsed.data );
             // Save
-            data.requests[ id ] = newRequest;
+            data.requests[ newRequest.id ] = newRequest;
             // Response
             res( newRequest );
         }.bind( this ));
@@ -77,7 +79,8 @@ module.exports = {
             if( !parsed.success ) return rej({
                 code: 400,
                 body: {
-                    errors: parsed.error.format()._errors
+                    message: "Invalid Fields",
+                    errors: parsed.error.flatten().fieldErrors
                 }
             });
 
@@ -85,7 +88,7 @@ module.exports = {
             if( !item ) return rej({
                 code: 404,
                 body: {
-                    errors: [ "Item not found" ]
+                    message: "Item not found"
                 }
             });
 
@@ -93,14 +96,14 @@ module.exports = {
             if( item.requesterId !== user ) return rej({
                 code: 403,
                 body: {
-                    errors: [ "Unauthorized access" ]
+                    message: "Unauthorized access"
                 }
             });
             
             if( item.status === "approved" ) return rej({
                 code: 400,
                 body: {
-                    errors: [ "Request is approved" ]
+                    message: "Request is approved"
                 }
             });
 
@@ -127,7 +130,8 @@ module.exports = {
             if( !parsed.success ) return rej({
                 code: 400,
                 body: {
-                    errors: parsed.error.format()._errors
+                    message: "Invalid Fields",
+                    errors: parsed.error.flatten().fieldErrors
                 }
             });
 
@@ -141,12 +145,12 @@ module.exports = {
                     }
                 );
             }
-            else item = this.newExpenseRequest( parsed.data );
+            else item = this.newExpenseRequest( request.get( "x-user-id" ), parsed.data );
             
             if( !item ) return rej({
                 code: 404,
                 body: {
-                    errors: [ "Item not found" ]
+                    message: "Item not found"
                 }
             });
 
@@ -154,28 +158,28 @@ module.exports = {
             if( item.requesterId !== user ) return rej({
                 code: 403,
                 body: {
-                    errors: [ "Unauthorized access" ]
+                    message: "Unauthorized access"
                 }
             });
             
             if( item.status === "approved" ) return rej({
                 code: 400,
                 body: {
-                    errors: [ "Can't submit approved request" ]
+                    message: "Can't submit approved request"
                 }
             });
 
             if( item.status === "submitted" ) return rej({
                 code: 400,
                 body: {
-                    errors: [ "Can't submit twice" ]
+                    message: "Can't submit twice"
                 }
             });
 
             if( item.status === "rejected" && dataUtils.equal( request.body.values, item.values ) ) return rej({
                 code: 400,
                 body: {
-                    errors: [ "Can't submit rejected request without changes" ]
+                    message: "Can't submit rejected request without changes"
                 }
             });
 
@@ -183,7 +187,7 @@ module.exports = {
             if( !approver ) return rej({
                 code: 400,
                 body: {
-                    errors: [ "Back off finance guy" ]
+                    message: "Back off finance guy"
                 }
             });
 
@@ -212,7 +216,7 @@ module.exports = {
             if( !item ) return rej({
                 code: 404,
                 body: {
-                    errors: [ "Item not found" ]
+                    message: "Item not found"
                 }
             });
 
@@ -220,14 +224,14 @@ module.exports = {
             if( item.approverId !== user ) return rej({
                 code: 403,
                 body: {
-                    errors: [ "Unauthorized access" ]
+                    message: "Unauthorized access"
                 }
             });
             
             if( item.status !== "submitted" ) return rej({
                 code: 400,
                 body: {
-                    errors: [ "Request is not submitted for apporove" ]
+                    message: "Request is not submitted for apporove"
                 }
             });
 
@@ -245,9 +249,8 @@ module.exports = {
         });
     },
 
-    newExpenseRequest: function( values ){
+    newExpenseRequest: function( user, values ){
         var id = "REQ-" + Object.keys( data.requests ).length; // Buggy
-        var user = request.get( "x-user-id" );
         return {
             id: id,
             requesterId: user,

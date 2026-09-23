@@ -10,7 +10,8 @@ define([
     "feature/user/Picker",
     "feature/request/List",
     "feature/detail/Detail",
-    "feature/form/Edit"
+    "feature/form/Edit",
+    "feature/form/Create"
 ], function(
     WIDGET,
     EVENT,
@@ -23,7 +24,8 @@ define([
     Picker,
     Requests,
     Detail,
-    Edit
+    Edit,
+    Create
 ){
 
     return {
@@ -34,7 +36,8 @@ define([
             Picker,
             Requests,
             Detail,
-            Edit
+            Edit,
+            Create
         ],
         afterInit: function(){
 
@@ -62,6 +65,9 @@ define([
                     break;
                 case "request/?id/edit":
                     this.showContent( "edit" );
+                    break;
+                case "request/new":
+                    this.showContent( "create" );
                     break;
                 default:
                     this.showContent( "notFound" );

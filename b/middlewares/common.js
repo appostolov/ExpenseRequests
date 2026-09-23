@@ -11,6 +11,7 @@ module.exports = {
     },
 
     error: function( err, req, res, next ){
+        console.log( err );
         var error = Object.assign(
             {
                 status: 500,

@@ -7,6 +7,7 @@ define(function(){
 		CHECK: "fa-solid fa-check",
 		INFO: "fa-solid fa-circle-info",
 		WARNING: "fa-solid fa-triangle-exclamation",
-		ERROR: "fa-solid fa-square-xmark"
+		ERROR: "fa-solid fa-square-xmark",
+		PLUS: "fa-solid fa-plus"
 	};
 });

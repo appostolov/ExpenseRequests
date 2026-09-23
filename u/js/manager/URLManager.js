@@ -10,7 +10,8 @@ define([
             "users",
             "request",
             "request/?id",
-            "request/?id/edit"
+            "request/?id/edit",
+            "request/new"
         ],
         get route(){
             return this.parse( window.location.hash ) || {};
