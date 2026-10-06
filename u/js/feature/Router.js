@@ -30,7 +30,7 @@ define([
 
     return {
         type: WIDGET.TYPE.BLOCK,
-        className: "positionRelative maxWidth960 backBackgroundColor",
+        className: "positionRelative backBackgroundColor",
         pages: [
             NotFound,
             Picker,
